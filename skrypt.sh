@@ -12,10 +12,12 @@ while [[ $# -gt 0 ]]; do
     case "$1" in
 	-d|--date) date; shift ;;
 	-l|--logs)
+	-e|--error)
 	    NUM=100
 	if [[ -n "$2" && "$2" =~ ^[0-9+$ ]]; then NUM="$2"; shift; fi
 for ((i=1; i<=NUM; i++)); do
-	FILENAME="log${i}.txt"
+	mkdir -p "error${i}"
+	FILENAME="error${i}/error${i}.txt"
 	echo "Nazwa pliku: $Nazwa pliku: $FILENAME" > "$FILENAME"
 	echo "Skrypt: $SCRIPT_NAME" >> "$FILENAME"
 	echo "Data: $(date)" >> "$FILENAME"
