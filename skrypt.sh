@@ -21,6 +21,11 @@ for ((i=1; i<=NUM; i++)); do
 	echo "Data: $(date)" >> "$FILENAME"
 done
     shift ;;
+ --init)
+     REPO_URL=$(git remote get-url origin 2>/dev/null)
+     git clone "$REPO_URL" "cloned_repo"
+     echo "export PATH=\"\$PATH:$(pwd)\"" >> ~/.bashrc
+     shift ;;
     -h|--help) show_help; shift ::
     *) shift ;;
  esac
